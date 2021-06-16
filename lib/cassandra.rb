@@ -444,8 +444,8 @@ module Cassandra
                       end
       end
 
-      if options.key?(ssl_verify_hostname)
-        context.verify_hostname = ssl_verify_hostname
+      if options.key?(:ssl_verify_hostname)
+        context.verify_hostname = options[:ssl_verify_hostname]
       end
 
       options[:ssl] = context
