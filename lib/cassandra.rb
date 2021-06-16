@@ -92,6 +92,7 @@ module Cassandra
     :server_cert,
     :shuffle_replicas,
     :ssl,
+    :ssl_verify_hostname,
     :synchronize_schema,
     :timeout,
     :trace,
@@ -441,6 +442,10 @@ module Cassandra
                       else
                         ::OpenSSL::PKey::RSA.new(File.read(private_key))
                       end
+      end
+
+      if options.key?(ssl_verify_hostname)
+        context.verify_hostname = ssl_verify_hostname
       end
 
       options[:ssl] = context
